@@ -14,26 +14,27 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample
 
-import dagger.BindsInstance;
-import dagger.Component;
-import dagger.android.support.AndroidSupportInjectionModule;
+import dagger.BindsInstance
+import dagger.Component
+import dagger.android.support.AndroidSupportInjectionModule
 
 /**
  * Application component refers to application level modules only
  */
-@Component(modules = {
+@Component(modules = arrayOf(
         /* Use AndroidInjectionModule.class if you're not using support library */
-        AndroidSupportInjectionModule.class,
-        AppModule.class,
-        BuildersModule.class })
-public interface AppComponent {
+        AndroidSupportInjectionModule::class,
+        AppModule::class,
+        BuildersModule::class))
+interface AppComponent {
     @Component.Builder
     interface Builder {
 
-        @BindsInstance Builder application(App application);
-        AppComponent build();
+        @BindsInstance fun application(application: App): Builder
+        fun build(): AppComponent
     }
-    void inject(App app);
+
+    fun inject(app: App)
 }

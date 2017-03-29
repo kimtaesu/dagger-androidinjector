@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample.feature
 
-import android.content.Context;
-
-import org.codepond.daggersample.feature.FeatureSubComponent;
-import dagger.Module;
-import dagger.Provides;
+import dagger.Subcomponent
+import dagger.android.AndroidInjector
 
 /**
- * Application module refers to sub components and provides application level dependencies.
+ * Feature level component
  */
-@Module(subcomponents = { FeatureSubComponent.class /* Add additional sub components here */ })
-public class AppModule {
-    @Provides Context provideContext(App application) {
-        return application.getApplicationContext();
-    }
-
-    // Add application level bindings here, e.g.: RestClientApi, Repository, etc.
+@Subcomponent(modules = arrayOf(FeatureModule::class))
+interface FeatureSubComponent : AndroidInjector<FeatureActivity> {
+    @Subcomponent.Builder
+    abstract class Builder : AndroidInjector.Builder<FeatureActivity>()
 }

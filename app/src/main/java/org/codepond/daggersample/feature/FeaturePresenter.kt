@@ -14,8 +14,17 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample.feature
 
-interface FeatureView {
-    void doNothing();
+import javax.inject.Inject
+import javax.inject.Named
+
+class FeaturePresenter
+@Inject constructor(
+        private val featureView: FeatureView,
+        @Named("someId") private val someId: String) {
+
+    fun doNothing() {
+        featureView.doNothing()
+    }
 }

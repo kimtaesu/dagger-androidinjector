@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample
 
-import android.app.Activity;
+import android.app.Activity
 
-import org.codepond.daggersample.feature.FeatureActivity;
-import org.codepond.daggersample.feature.FeatureSubComponent;
+import org.codepond.daggersample.feature.FeatureActivity
+import org.codepond.daggersample.feature.FeatureSubComponent
 
-import dagger.Binds;
-import dagger.Module;
-import dagger.android.ActivityKey;
-import dagger.android.AndroidInjector;
-import dagger.multibindings.IntoMap;
+import dagger.Binds
+import dagger.Module
+import dagger.android.ActivityKey
+import dagger.android.AndroidInjector
+import dagger.multibindings.IntoMap
 
 /**
  * This module contains all the binding to the sub component builders in the app
  */
 @Module
-public abstract class BuildersModule {
+abstract class BuildersModule {
     @Binds
     @IntoMap
-    @ActivityKey(FeatureActivity.class)
-    abstract AndroidInjector.Factory<? extends Activity> bindFeatureActivityInjectorFactory(FeatureSubComponent.Builder builder);
+    @ActivityKey(FeatureActivity::class)
+    abstract fun bindFeatureActivityInjectorFactory(builder: FeatureSubComponent.Builder): AndroidInjector.Factory<out Activity>
 
     // Add another builder binding here
 }

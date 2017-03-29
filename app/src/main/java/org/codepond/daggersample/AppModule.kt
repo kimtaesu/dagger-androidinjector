@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import android.content.Context
 
-class FeaturePresenter {
-    private FeatureView featureView;
-    private String someId;
+import org.codepond.daggersample.feature.FeatureSubComponent
+import dagger.Module
+import dagger.Provides
 
-    @Inject
-    public FeaturePresenter(FeatureView featureView, @Named("someId") String someId) {
-        this.featureView = featureView;
-        this.someId = someId;
+/**
+ * Application module refers to sub components and provides application level dependencies.
+ */
+@Module(subcomponents = arrayOf(FeatureSubComponent::class /* Add additional sub components here */))
+class AppModule {
+    @Provides fun provideContext(application: App): Context {
+        return application.applicationContext
     }
 
-    public void doNothing() {
-        featureView.doNothing();
-    }
+    // Add application level bindings here, e.g.: RestClientApi, Repository, etc.
 }

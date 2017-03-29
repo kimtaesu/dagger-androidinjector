@@ -14,32 +14,30 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample
 
-import android.app.Activity;
-import android.app.Application;
+import android.app.Activity
+import android.app.Application
 
-import javax.inject.Inject;
+import javax.inject.Inject
 
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasDispatchingActivityInjector;
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasDispatchingActivityInjector
 
 
-public class App extends Application implements HasDispatchingActivityInjector {
-    @Inject DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+class App : Application(), HasDispatchingActivityInjector {
+    @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    override fun onCreate() {
+        super.onCreate()
         DaggerAppComponent
                 .builder()
                 .application(this)
                 .build()
-                .inject(this);
+                .inject(this)
     }
 
-    @Override
-    public DispatchingAndroidInjector<Activity> activityInjector() {
-        return dispatchingAndroidInjector;
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> {
+        return dispatchingAndroidInjector
     }
 }

@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample
 
-import javax.inject.Named;
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
 
-import dagger.Binds;
-import dagger.Module;
-import dagger.Provides;
+import org.codepond.daggersample.feature.FeatureActivity
 
-/**
- * Feature level module holds all the bindings needed for this feature.
- */
-@Module
-public abstract class FeatureModule {
-    @Binds abstract FeatureView provideFeatureView(FeatureActivity featureActivity);
-
-    @Provides @Named("someId") static String provideSomeId(FeatureActivity featureActivity) {
-        return featureActivity.someId;
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val intent = Intent(this, FeatureActivity::class.java)
+        intent.putExtra(FeatureActivity.EXTRA_SOME_ID, "id_1")
+        startActivity(intent)
     }
 }

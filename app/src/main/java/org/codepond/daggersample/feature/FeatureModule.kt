@@ -14,21 +14,26 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample.feature
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import javax.inject.Named
 
-import org.codepond.daggersample.feature.FeatureActivity;
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
 
-public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, FeatureActivity.class);
-        intent.putExtra(FeatureActivity.EXTRA_SOME_ID, "id_1");
-        startActivity(intent);
+/**
+ * Feature level module holds all the bindings needed for this feature.
+ */
+@Module
+abstract class FeatureModule {
+    @Binds internal abstract fun provideFeatureView(featureActivity: FeatureActivity): FeatureView
+
+    @Module
+    companion object {
+        @JvmStatic @Provides @Named("someId")
+        fun provideSomeId(featureActivity: FeatureActivity): String {
+            return featureActivity.someId
+        }
     }
 }
