@@ -20,6 +20,8 @@ import android.app.Activity;
 
 import org.codepond.daggersample.feature.FeatureActivity;
 import org.codepond.daggersample.feature.FeatureSubComponent;
+import org.codepond.daggersample.feature2.FeatureActivity2;
+import org.codepond.daggersample.feature2.FeatureSubComponent2;
 
 import dagger.Binds;
 import dagger.Module;
@@ -36,6 +38,11 @@ public abstract class BuildersModule {
     @IntoMap
     @ActivityKey(FeatureActivity.class)
     abstract AndroidInjector.Factory<? extends Activity> bindFeatureActivityInjectorFactory(FeatureSubComponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @ActivityKey(FeatureActivity2.class)
+    abstract AndroidInjector.Factory<? extends Activity> bindFeatureActivity2InjectorFactory(FeatureSubComponent2.Builder builder);
 
     // Add another builder binding here
 }
