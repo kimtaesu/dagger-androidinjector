@@ -27,13 +27,16 @@ import dagger.android.support.AndroidSupportInjectionModule;
         /* Use AndroidInjectionModule.class if you're not using support library */
         AndroidSupportInjectionModule.class,
         AppModule.class,
-        BuildersModule.class })
+        BuildersModule.class})
 public interface AppComponent {
     @Component.Builder
     interface Builder {
 
-        @BindsInstance Builder application(App application);
+        @BindsInstance
+        Builder application(App application);
+
         AppComponent build();
     }
+
     void inject(App app);
 }

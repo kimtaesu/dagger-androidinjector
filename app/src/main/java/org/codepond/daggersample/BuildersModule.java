@@ -18,6 +18,7 @@ package org.codepond.daggersample;
 
 import org.codepond.daggersample.feature.FeatureActivity;
 import org.codepond.daggersample.feature.FeatureModule;
+import org.codepond.daggersample.feature2.FeatureModule2;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -27,6 +28,9 @@ import dagger.android.ContributesAndroidInjector;
  */
 @Module
 public abstract class BuildersModule {
-    @ContributesAndroidInjector(modules = { FeatureModule.class })
+    @ContributesAndroidInjector(modules = {FeatureModule.class, FeatureModule2.class})
     public abstract FeatureActivity contributeFeatureActivityInjector();
+
+//    @ContributesAndroidInjector(modules = {FeatureModule2.class})
+//    public abstract FeatureActivity contributeFeature2ActivityInjector();
 }

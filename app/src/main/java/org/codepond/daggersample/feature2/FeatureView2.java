@@ -14,22 +14,8 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample.feature2;
 
-import android.content.Context;
-
-import dagger.Module;
-import dagger.Provides;
-
-/**
- * Application module refers to sub components and provides application level dependencies.
- */
-@Module
-public class AppModule {
-    @Provides
-    Context provideContext(App application) {
-        return application.getApplicationContext();
-    }
-
-    // Add application level bindings here, e.g.: RestClientApi, Repository, etc.
+interface FeatureView2 {
+    void doNothing();
 }
