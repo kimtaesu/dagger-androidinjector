@@ -27,6 +27,6 @@ import dagger.android.ContributesAndroidInjector;
  */
 @Module
 public abstract class BuildersModule {
-    @ContributesAndroidInjector(modules = { FeatureModule.class })
+    @ContributesAndroidInjector(modules = {FeatureModule.class})
     public abstract FeatureActivity contributeFeatureActivityInjector();
 }

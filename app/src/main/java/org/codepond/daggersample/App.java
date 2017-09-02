@@ -26,7 +26,8 @@ import dagger.android.HasActivityInjector;
 
 
 public class App extends Application implements HasActivityInjector {
-    @Inject AndroidInjector<Activity> androidInjector;
+    @Inject
+    AndroidInjector<Activity> androidInjector;
 
     @Override
     public void onCreate() {

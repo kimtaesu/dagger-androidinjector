@@ -14,27 +14,26 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample.feature.fragment;
 
-import org.codepond.daggersample.feature.fragment.FeatureFragmentSubcomponent;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import javax.inject.Named;
-
-import dagger.Binds;
-import dagger.Module;
-import dagger.Provides;
+import org.codepond.daggersample.R;
 
 /**
- * Feature level module holds all the bindings needed for this feature.
+ * Created by tyler on 2017. 9. 3..
  */
-@Module
-public abstract class FeatureModule {
-    @Binds
-    abstract FeatureView provideFeatureView(FeatureActivity featureActivity);
 
-    @Provides
-    @Named("someId")
-    static String provideSomeId(FeatureActivity featureActivity) {
-        return featureActivity.someId;
+
+class FeatureFragment extends Fragment {
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 }

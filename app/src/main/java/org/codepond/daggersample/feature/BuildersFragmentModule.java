@@ -16,25 +16,19 @@
 
 package org.codepond.daggersample.feature;
 
+import org.codepond.daggersample.feature.FeatureActivity;
+import org.codepond.daggersample.feature.FeatureModule;
+import org.codepond.daggersample.feature.fragment.FeatureFragmentModule;
 import org.codepond.daggersample.feature.fragment.FeatureFragmentSubcomponent;
 
-import javax.inject.Named;
-
-import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
 
 /**
- * Feature level module holds all the bindings needed for this feature.
+ * This module contains all the binding to the sub component builders in the app
  */
-@Module
-public abstract class FeatureModule {
-    @Binds
-    abstract FeatureView provideFeatureView(FeatureActivity featureActivity);
-
-    @Provides
-    @Named("someId")
-    static String provideSomeId(FeatureActivity featureActivity) {
-        return featureActivity.someId;
-    }
+@Module(subcomponents = FeatureFragmentSubcomponent.class)
+public abstract class BuildersFragmentModule {
+    @ContributesAndroidInjector(modules = {FeatureFragmentModule.class})
+    public abstract FeatureActivity contributeFeatureActivityInjector();
 }

@@ -16,6 +16,7 @@
 
 package org.codepond.daggersample.feature;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -23,14 +24,22 @@ import android.support.v7.app.AppCompatActivity;
 import javax.inject.Inject;
 
 import org.codepond.daggersample.R;
+
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasFragmentInjector;
 
 
-public class FeatureActivity extends AppCompatActivity implements FeatureView {
+public class FeatureActivity extends AppCompatActivity implements FeatureView, HasFragmentInjector {
     public static final String EXTRA_SOME_ID = "some_id";
-    @Inject FeaturePresenter presenter;
+    @Inject
+    FeaturePresenter presenter;
 
     String someId;
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentInjector;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,5 +53,10 @@ public class FeatureActivity extends AppCompatActivity implements FeatureView {
     @Override
     public void doNothing() {
 
+    }
+
+    @Override
+    public AndroidInjector<Fragment> fragmentInjector() {
+        return fragmentInjector;
     }
 }
