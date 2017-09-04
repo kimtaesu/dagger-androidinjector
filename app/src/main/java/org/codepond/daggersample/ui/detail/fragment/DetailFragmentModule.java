@@ -14,8 +14,31 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample.ui.detail.fragment;
 
-interface FeatureView {
-    void doNothing();
+
+import org.codepond.daggersample.scope.FragmentScope;
+
+import dagger.Module;
+import dagger.Provides;
+
+/**
+ * Created by cadri on 2017. 08. 01..
+ */
+
+@Module
+public class DetailFragmentModule {
+
+    @FragmentScope
+    @Provides
+    DetailFragmentView providesDetailFragmentView(DetailFragment detailFragment) {
+        return detailFragment;
+    }
+
+    @FragmentScope
+    @Provides
+    DetailFragmentPresenter providesDetailFragmentPresenter(DetailFragmentView detailFragmentView) {
+        return new DetailFragmentPresenter(detailFragmentView);
+    }
+
 }

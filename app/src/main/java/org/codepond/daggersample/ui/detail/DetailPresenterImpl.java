@@ -14,29 +14,31 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature2;
+package org.codepond.daggersample.ui.detail;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
-import org.codepond.daggersample.R;
+import org.codepond.daggersample.data.ApiService;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 
+/**
+ * Created by mertsimsek on 30/05/2017.
+ */
 
-public class FeatureActivity2 extends AppCompatActivity {
-    public static final String EXTRA_SOME_ID = "some_id";
-    String someId;
+public class DetailPresenterImpl implements DetailPresenter {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        someId = getIntent().getStringExtra(EXTRA_SOME_ID);
-        AndroidInjection.inject(this);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    DetailView detailView;
+    ApiService apiService;
+
+    @Inject
+    public DetailPresenterImpl(DetailView detailView, ApiService apiService) {
+        this.detailView = detailView;
+        this.apiService = apiService;
     }
 
+    public void loadDetail() {
+        apiService.loadData();
+        detailView.onDetailLoaded();
+    }
 }

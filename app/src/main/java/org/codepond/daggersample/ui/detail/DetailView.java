@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature2;
+package org.codepond.daggersample.ui.detail;
 
-interface FeatureView2 {
-    void doNothing();
+/**
+ * Created by mertsimsek on 25/05/2017.
+ */
+
+public interface DetailView {
+    void onDetailLoaded();
 }

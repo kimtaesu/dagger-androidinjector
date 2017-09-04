@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample.ui.detail.fragment;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+/**
+ * Created by mertsimsek on 02/06/2017.
+ */
 
-class FeaturePresenter {
-    private FeatureView featureView;
-    private String someId;
+public interface DetailFragmentView {
 
-    @Inject
-    public FeaturePresenter(FeatureView featureView, @Named("someId") String someId) {
-        this.featureView = featureView;
-        this.someId = someId;
-    }
-
-    public void doNothing() {
-        featureView.doNothing();
-    }
+    void onDetailFragmentLoaded();
 }

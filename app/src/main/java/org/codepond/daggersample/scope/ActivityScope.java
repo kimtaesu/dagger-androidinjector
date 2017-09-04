@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample.scope;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-import org.codepond.daggersample.feature.FeatureActivity;
+import javax.inject.Scope;
 
-public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, FeatureActivity.class);
-        intent.putExtra(FeatureActivity.EXTRA_SOME_ID, "id_1");
-        startActivity(intent);
-    }
+/**
+ * Created by cadri on 2017. 08. 01..
+ */
+
+@Scope
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ActivityScope {
 }

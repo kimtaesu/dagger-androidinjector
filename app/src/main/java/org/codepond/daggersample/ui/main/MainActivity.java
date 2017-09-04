@@ -14,35 +14,44 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+
+
+import org.codepond.daggersample.R;
+import org.codepond.daggersample.ui.detail.DetailActivity;
 
 import javax.inject.Inject;
 
-import org.codepond.daggersample.R;
 import dagger.android.AndroidInjection;
 
+public class MainActivity extends AppCompatActivity implements MainView {
 
-public class FeatureActivity extends AppCompatActivity implements FeatureView {
-    public static final String EXTRA_SOME_ID = "some_id";
-    @Inject FeaturePresenter presenter;
-
-    String someId;
+    @Inject
+    MainPresenter mainPresenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        someId = getIntent().getStringExtra(EXTRA_SOME_ID);
+    protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter.doNothing();
+        mainPresenter.loadMain();
+
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DetailActivity.class));
+            }
+        });
     }
 
     @Override
-    public void doNothing() {
-
+    public void onMainLoaded() {
+        Log.i("TEST", "Main page is loaded.");
     }
 }

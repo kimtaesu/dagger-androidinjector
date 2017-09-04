@@ -14,22 +14,17 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature;
+package org.codepond.daggersample.data;
 
-import javax.inject.Named;
-
-import dagger.Binds;
-import dagger.Module;
-import dagger.Provides;
+import android.util.Log;
 
 /**
- * Feature level module holds all the bindings needed for this feature.
+ * Created by mertsimsek on 26/05/2017.
  */
-@Module
-public abstract class FeatureModule {
-    @Binds abstract FeatureView provideFeatureView(FeatureActivity featureActivity);
 
-    @Provides @Named("someId") static String provideSomeId(FeatureActivity featureActivity) {
-        return featureActivity.someId;
+public class ApiService {
+
+    public void loadData() {
+        Log.i("ApiService", "loadData() method ...");
     }
 }

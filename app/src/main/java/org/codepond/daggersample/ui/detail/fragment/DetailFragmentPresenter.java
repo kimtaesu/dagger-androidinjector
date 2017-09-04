@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample.feature2;
-
-import dagger.Binds;
-import dagger.Module;
+package org.codepond.daggersample.ui.detail.fragment;
 
 /**
- * Feature level module holds all the bindings needed for this feature.
+ * Created by mertsimsek on 02/06/2017.
  */
-@Module
-public abstract class FeatureModule2 {
+
+public class DetailFragmentPresenter {
+
+    DetailFragmentView detailFragmentView;
+
+    public DetailFragmentPresenter(DetailFragmentView detailFragmentView) {
+        this.detailFragmentView = detailFragmentView;
+        detailFragmentView.onDetailFragmentLoaded();
+    }
 }

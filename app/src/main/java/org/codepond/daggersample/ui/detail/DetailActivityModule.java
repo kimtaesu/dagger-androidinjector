@@ -14,29 +14,32 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample.ui.detail;
 
-import dagger.BindsInstance;
-import dagger.Component;
-import dagger.android.support.AndroidSupportInjectionModule;
+
+import org.codepond.daggersample.data.ApiService;
+import org.codepond.daggersample.scope.ActivityScope;
+
+import dagger.Module;
+import dagger.Provides;
 
 /**
- * Application component refers to application level modules only
+ * Created by cadri on 2017. 08. 01..
  */
-@Component(modules = {
-        /* Use AndroidInjectionModule.class if you're not using support library */
-        AndroidSupportInjectionModule.class,
-        AppModule.class,
-        BuildersModule.class})
-public interface AppComponent {
-    @Component.Builder
-    interface Builder {
 
-        @BindsInstance
-        Builder application(App application);
+@Module
+public class DetailActivityModule {
 
-        AppComponent build();
+    @ActivityScope
+    @Provides
+    DetailView provideDetailView(DetailActivity detailActivity) {
+        return detailActivity;
     }
 
-    void inject(App app);
+    @ActivityScope
+    @Provides
+    DetailPresenter provideDetailPresenter(DetailView detailView, ApiService apiService) {
+        return new DetailPresenterImpl(detailView, apiService);
+    }
+
 }

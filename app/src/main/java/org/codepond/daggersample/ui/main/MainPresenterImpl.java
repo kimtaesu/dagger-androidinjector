@@ -14,32 +14,30 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample.ui.main;
 
-import android.app.Activity;
-import android.app.Application;
+
+import org.codepond.daggersample.data.ApiService;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjector;
-import dagger.android.HasActivityInjector;
 
+/**
+ * Created by mertsimsek on 25/05/2017.
+ */
 
-public class App extends Application implements HasActivityInjector {
-    @Inject AndroidInjector<Activity> androidInjector;
+public class MainPresenterImpl implements MainPresenter {
+    MainView mainView;
+    ApiService apiService;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        DaggerAppComponent
-                .builder()
-                .application(this)
-                .build()
-                .inject(this);
+    @Inject
+    public MainPresenterImpl(MainView mainView, ApiService apiService) {
+        this.mainView = mainView;
+        this.apiService = apiService;
     }
 
-    @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return androidInjector;
+    public void loadMain() {
+        apiService.loadData();
+        mainView.onMainLoaded();
     }
 }

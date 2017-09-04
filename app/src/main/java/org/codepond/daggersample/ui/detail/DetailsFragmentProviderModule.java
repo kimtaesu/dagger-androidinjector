@@ -14,23 +14,25 @@
  * limitations under the License.
  */
 
-package org.codepond.daggersample;
+package org.codepond.daggersample.ui.detail;
 
-import org.codepond.daggersample.feature.FeatureActivity;
-import org.codepond.daggersample.feature.FeatureModule;
-import org.codepond.daggersample.feature2.FeatureModule2;
+
+import org.codepond.daggersample.scope.FragmentScope;
+import org.codepond.daggersample.ui.detail.fragment.DetailFragment;
+import org.codepond.daggersample.ui.detail.fragment.DetailFragmentModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 /**
- * This module contains all the binding to the sub component builders in the app
+ * Created by cadri on 2017. 08. 01..
  */
-@Module
-public abstract class BuildersModule {
-    @ContributesAndroidInjector(modules = {FeatureModule.class, FeatureModule2.class})
-    public abstract FeatureActivity contributeFeatureActivityInjector();
 
-//    @ContributesAndroidInjector(modules = {FeatureModule2.class})
-//    public abstract FeatureActivity contributeFeature2ActivityInjector();
+@Module
+public abstract class DetailsFragmentProviderModule {
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {DetailFragmentModule.class})
+    abstract DetailFragment bindDetailFragment();
+
 }
